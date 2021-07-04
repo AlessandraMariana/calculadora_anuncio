@@ -18,31 +18,37 @@ public class Anuncio {
 		return data_convertida;
 	}
 	
-	void calcular_alcance(int investimento_total) {
-		int visualizacoes = 0;
+	void calcular_alcance(int investimento_dia, int qtd_dias) {
+		int total_visualizacoes = 0;
+		int total_cliques = 0;
+		int total_compartilhamentos= 0;
 		int novas_visualizacoes = 0;
 		int cliques = 0;
 		int compatilhamentos = 0;
 		int contador = 0;
 		
-		visualizacoes = investimento_total * 30;
-		novas_visualizacoes = visualizacoes;
+		total_visualizacoes = investimento_dia * 30;
+		novas_visualizacoes = total_visualizacoes;
 		
 		while ((contador < 4) && (novas_visualizacoes >= 100)){
 		  cliques = (novas_visualizacoes / 100) * 12;
-		    
+		  total_cliques = total_cliques + cliques;
+		  
 		  if (cliques >= 20) {  
 			 compatilhamentos = (cliques / 20) * 3;
+			 total_compartilhamentos = total_compartilhamentos + compatilhamentos;
 		  }
 		
-		  visualizacoes = visualizacoes + (compatilhamentos * 40);
+		  total_visualizacoes = total_visualizacoes + (compatilhamentos * 40);
 		  novas_visualizacoes = compatilhamentos * 40;
 		  contador = contador + 1;
 		}
 		
 		
-		
-		System.out.printf("Projeção aproximada da quantidade máxima de pessoas que visualizarão o mesmo anúncio: %d\n", (visualizacoes));
+		System.out.printf("\nValor total investido: %d\n", (qtd_dias * investimento_dia));
+		System.out.printf("Quantidade máxima visuzalizações: %d\n", (qtd_dias * total_visualizacoes));
+		System.out.printf("Quantidade máxima cliques: %d\n", (qtd_dias * total_cliques));
+		System.out.printf("Quantidade máxima compartilhamentos: %d\n1\n", (qtd_dias * total_compartilhamentos));
 	  }
 	
 	//                             Data no formato: dd/mm/AAAA
